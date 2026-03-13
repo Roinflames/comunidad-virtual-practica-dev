@@ -1,0 +1,3 @@
+Nombre: Wellington Rizzo
+Fecha: 2026-03-13
+Aprendi: Crear ramas y preparar un PR siguiendo el flujo del equipo.
