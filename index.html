@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comunidad Virtual | Bienvenida</title>
+  <style>
+    @font-face {
+      font-family: "Aileron";
+      src: url("./Aileron-Regular.otf") format("opentype");
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "Aileron";
+      src: url("./Aileron-Bold.otf") format("opentype");
+      font-weight: 700;
+    }
+
+    :root {
+      color-scheme: dark;
+      --bg-top: #171d68;
+      --bg-bottom: #090d33;
+      --panel: rgba(18, 23, 79, 0.78);
+      --panel-border: rgba(127, 228, 240, 0.2);
+      --pink: #e53a92;
+      --pink-soft: #f596c2;
+      --cyan: #58c6d0;
+      --cyan-soft: #8ee8ef;
+      --text: #f7f8ff;
+      --muted: #c7caef;
+      --shadow: rgba(3, 6, 27, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Aileron", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(229, 58, 146, 0.22), transparent 20%),
+        radial-gradient(circle at 80% 15%, rgba(88, 198, 208, 0.18), transparent 18%),
+        linear-gradient(140deg, rgba(88, 198, 208, 0.12) 0%, transparent 35%),
+        linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(127, 228, 240, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(127, 228, 240, 0.08) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(circle at center, black 55%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(12px);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .orb-one {
+      width: 320px;
+      height: 320px;
+      top: -80px;
+      right: -90px;
+      background: rgba(229, 58, 146, 0.35);
+    }
+
+    .orb-two {
+      width: 260px;
+      height: 260px;
+      bottom: 5%;
+      left: -60px;
+      background: rgba(88, 198, 208, 0.28);
+    }
+
+    .page {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 28px;
+      box-shadow: 0 24px 80px var(--shadow);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+    }
+
+    .hero-copy {
+      padding: 38px 38px 34px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--cyan-soft);
+    }
+
+    .tag::before {
+      content: "";
+      width: 44px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.9rem, 6vw, 5.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .accent {
+      color: var(--pink-soft);
+    }
+
+    .lead {
+      max-width: 52rem;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 1.15rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .pill {
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(247, 248, 255, 0.16);
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .hero-brand {
+      display: grid;
+      align-items: center;
+      padding: 28px;
+      min-height: 100%;
+      background:
+        linear-gradient(180deg, rgba(229, 58, 146, 0.12), transparent 40%),
+        linear-gradient(135deg, rgba(88, 198, 208, 0.18), transparent 55%);
+    }
+
+    .brand-card {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(247, 248, 255, 0.14);
+      background: rgba(10, 14, 51, 0.62);
+    }
+
+    .brand-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    .brand-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 26px;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cyan-soft);
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .roadmap {
+      list-style: none;
+      padding: 0;
+    }
+
+    .roadmap li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(247, 248, 255, 0.1);
+    }
+
+    .roadmap li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .roadmap strong {
+      color: var(--text);
+    }
+
+    .callout {
+      margin-top: 24px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .callout strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+      color: var(--pink-soft);
+    }
+
+    .callout p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(229, 58, 146, 0.22), rgba(88, 198, 208, 0.22));
+      border: 1px solid rgba(247, 248, 255, 0.16);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .callout {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 20px, 1160px);
+        padding-top: 20px;
+      }
+
+      .hero-copy,
+      .card,
+      .callout,
+      .hero-brand {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .lead {
+        font-size: 1rem;
+      }
+    }
+
+    /* =============================================
+       Progreso de Alumnos
+    ============================================= */
+    .progress-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 32px 0 20px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--cyan-soft);
+    }
+
+    .progress-title::before {
+      content: "";
+      width: 44px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      flex-shrink: 0;
+    }
+
+    .students-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .student-card {
+      padding: 26px 28px;
+    }
+
+    .sc-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .sc-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .sc-semana-badge {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(247, 248, 255, 0.14);
+      white-space: nowrap;
+    }
+
+    .sc-avance-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .sc-avance-pct {
+      color: var(--cyan-soft);
+      font-weight: 700;
+    }
+
+    .sc-bar-track {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(247, 248, 255, 0.1);
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .sc-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+    }
+
+    .sc-section-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .sc-semanas-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 12px;
+    }
+
+    .sc-semana-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(247, 248, 255, 0.07);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .sc-semana-item.completada { color: var(--cyan-soft); }
+    .sc-semana-item.en-curso   { color: #f5c842; }
+
+    .sc-semana-icon {
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
+      font-size: 0.75rem;
+    }
+
+    .sc-criterio {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 7px;
+    }
+
+    .sc-criterio-label {
+      flex: 0 0 136px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .sc-criterio-track {
+      flex: 1;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(247, 248, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .sc-criterio-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+    }
+
+    .sc-criterio-val {
+      flex: 0 0 28px;
+      text-align: right;
+      font-size: 0.78rem;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sc-nota {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(229, 58, 146, 0.12), rgba(88, 198, 208, 0.12));
+      border: 1px solid rgba(247, 248, 255, 0.12);
+      margin-top: 20px;
+    }
+
+    .sc-nota-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .sc-nota-estado {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .sc-nota-estado.aprobado { color: var(--cyan-soft); }
+    .sc-nota-estado.reprobado { color: #e55a5a; }
+
+    .sc-nota-value {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--muted);
+    }
+
+    .sc-nota-value.aprobado  { color: var(--cyan-soft); }
+    .sc-nota-value.reprobado { color: #e55a5a; }
+
+    @media (max-width: 920px) {
+      .students-grid { grid-template-columns: 1fr; }
+      .sc-semanas-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .student-card { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <div class="page">
+    <section class="hero">
+      <article class="panel hero-copy">
+        <span class="tag">Comunidad Virtual Practica Dev</span>
+        <h1>Bienvenidos <span class="accent">Wellington</span> y <span class="accent">Javier</span></h1>
+        <p class="lead">
+          Esta pagina deja registro del camino que vamos a recorrer juntos: aprender Git, Codex, SSH y Render,
+          trabajar con flujo profesional y terminar publicando en internet con un deploy automatizado desde GitHub Actions.
+        </p>
+        <div class="hero-actions">
+          <span class="pill">Git y GitHub</span>
+          <span class="pill">Codex aplicado</span>
+          <span class="pill">SSH seguro</span>
+          <span class="pill">Render + deploy continuo</span>
+        </div>
+      </article>
+
+      <aside class="panel hero-brand">
+        <div class="brand-card">
+          <img src="./assets-logo-comunidad-virtual.png" alt="Logo de Comunidad Virtual">
+          <p>
+            Comunidad Virtual combina desarrollo, automatizacion y despliegue real. La practica apunta a construir,
+            versionar y publicar como se hace en un equipo tecnico de verdad.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="content">
+      <article class="panel card">
+        <h2>Vamos a aprender</h2>
+        <ul>
+          <li>Crear ramas, commits limpios y pull requests con criterio.</li>
+          <li>Usar Codex para documentar, corregir y acelerar entregas.</li>
+          <li>Configurar acceso por SSH para trabajar y desplegar sin friccion.</li>
+          <li>Publicar en Render y dejar el proyecto visible en internet.</li>
+        </ul>
+      </article>
+
+      <article class="panel card">
+        <h2>Ruta de trabajo</h2>
+        <ul class="roadmap">
+          <li><strong>1.</strong> Push al repositorio con cambios controlados.</li>
+          <li><strong>2.</strong> GitHub Actions ejecuta el pipeline automaticamente.</li>
+          <li><strong>3.</strong> Render toma la nueva version y hace el deploy.</li>
+          <li><strong>4.</strong> La pagina queda online y lista para mostrar.</li>
+        </ul>
+      </article>
+
+      <article class="panel card">
+        <h2>Objetivo final</h2>
+        <p>
+          Que cada avance importante viaje por Git, quede registrado en el repo y termine publicado con un flujo simple,
+          repetible y profesional. En corto: push, pipeline, deploy y listo en internet.
+        </p>
+      </article>
+    </section>
+
+    <section class="panel callout">
+      <div>
+        <strong>Deploy automatizado, a lo vio.</strong>
+        <p>
+          La idea es dejar una base real para que Wellington y Javier practiquen el ciclo completo:
+          escribir cambios, subirlos al repo y ver como GitHub Actions mueve todo hasta produccion.
+        </p>
+      </div>
+      <div class="badge">Push -> Actions -> Render</div>
+    </section>
+
+    <p class="progress-title">Estado de los alumnos</p>
+    <div id="students-grid" class="students-grid"></div>
+  </div>
+
+  <script>
+    // =============================================================
+    // DATOS — editar aqui para actualizar el progreso de cada alumno
+    //
+    // estado de semana: "completada" | "en-curso" | "pendiente"
+    // criterios:        valor de 0 a 100
+    //
+    // La nota se calcula con escala chilena (exigencia 60%):
+    //   score 0  → nota 1.0
+    //   score 60 → nota 4.0
+    //   score 100→ nota 7.0
+    // =============================================================
+    var ESTUDIANTES = [
+      {
+        nombre: "Wellington",
+        semanaActual: 1,
+        semanas: [
+          { num: 1,  titulo: "Onboarding y Git",           estado: "en-curso"  },
+          { num: 2,  titulo: "Backend Basico",              estado: "pendiente" },
+          { num: 3,  titulo: "APIs REST",                   estado: "pendiente" },
+          { num: 4,  titulo: "Base de Datos",               estado: "pendiente" },
+          { num: 5,  titulo: "Proyecto 01: API REST",       estado: "pendiente" },
+          { num: 6,  titulo: "Frontend Basico",             estado: "pendiente" },
+          { num: 7,  titulo: "Proyecto 02: Frontend",       estado: "pendiente" },
+          { num: 8,  titulo: "Debugging y Calidad",         estado: "pendiente" },
+          { num: 9,  titulo: "Refactoring",                 estado: "pendiente" },
+          { num: 10, titulo: "DevOps Basico",               estado: "pendiente" },
+          { num: 11, titulo: "Proyecto 03: Automatizacion", estado: "pendiente" },
+          { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
+        ],
+        criterios: {
+          calidad_codigo: 0,   // 0-100
+          uso_git:        0,
+          funcionalidad:  0,
+          code_reviews:   0,
+          plazos:         0
+        }
+      },
+      {
+        nombre: "Javier",
+        semanaActual: 1,
+        semanas: [
+          { num: 1,  titulo: "Onboarding y Git",           estado: "en-curso"  },
+          { num: 2,  titulo: "Backend Basico",              estado: "pendiente" },
+          { num: 3,  titulo: "APIs REST",                   estado: "pendiente" },
+          { num: 4,  titulo: "Base de Datos",               estado: "pendiente" },
+          { num: 5,  titulo: "Proyecto 01: API REST",       estado: "pendiente" },
+          { num: 6,  titulo: "Frontend Basico",             estado: "pendiente" },
+          { num: 7,  titulo: "Proyecto 02: Frontend",       estado: "pendiente" },
+          { num: 8,  titulo: "Debugging y Calidad",         estado: "pendiente" },
+          { num: 9,  titulo: "Refactoring",                 estado: "pendiente" },
+          { num: 10, titulo: "DevOps Basico",               estado: "pendiente" },
+          { num: 11, titulo: "Proyecto 03: Automatizacion", estado: "pendiente" },
+          { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
+        ],
+        criterios: {
+          calidad_codigo: 0,
+          uso_git:        0,
+          funcionalidad:  0,
+          code_reviews:   0,
+          plazos:         0
+        }
+      }
+    ];
+
+    // Pesos de criterios (deben sumar 1.0)
+    var PESOS = {
+      calidad_codigo: 0.25,
+      uso_git:        0.20,
+      funcionalidad:  0.30,
+      code_reviews:   0.15,
+      plazos:         0.10
+    };
+
+    var LABELS = {
+      calidad_codigo: "Calidad de codigo",
+      uso_git:        "Uso de Git",
+      funcionalidad:  "Funcionalidad",
+      code_reviews:   "Code reviews",
+      plazos:         "Plazos"
+    };
+
+    function calcularNota(criterios) {
+      var score = 0;
+      for (var k in PESOS) score += (criterios[k] || 0) * PESOS[k];
+      var exigencia = 60;
+      var nota = score <= exigencia
+        ? 1 + (3 / exigencia) * score
+        : 4 + (3 / (100 - exigencia)) * (score - exigencia);
+      return Math.max(1.0, Math.min(7.0, nota)).toFixed(1);
+    }
+
+    function calcularAvance(semanas) {
+      var n = semanas.filter(function(s) { return s.estado === "completada"; }).length;
+      return Math.round(n / semanas.length * 100);
+    }
+
+    function icono(estado) {
+      if (estado === "completada") return "<span style='color:var(--cyan-soft)'>&#10003;</span>";
+      if (estado === "en-curso")   return "<span style='color:#f5c842'>&#9654;</span>";
+      return "<span style='opacity:0.4'>&#9675;</span>";
+    }
+
+    function renderEstudiante(est) {
+      var avance = calcularAvance(est.semanas);
+      var nota   = calcularNota(est.criterios);
+      var aprobado = parseFloat(nota) >= 4.0;
+      var cls = aprobado ? "aprobado" : "reprobado";
+      var estado = aprobado ? "Aprobado" : "Reprobado";
+
+      var semanasHtml = est.semanas.map(function(s) {
+        return '<li class="sc-semana-item ' + s.estado + '">' +
+          '<span class="sc-semana-icon">' + icono(s.estado) + '</span>' +
+          '<span>' + s.num + '. ' + s.titulo + '</span>' +
+          '</li>';
+      }).join('');
+
+      var criteriosHtml = '';
+      for (var k in PESOS) {
+        var val = est.criterios[k] || 0;
+        criteriosHtml +=
+          '<div class="sc-criterio">' +
+            '<span class="sc-criterio-label">' + LABELS[k] + '</span>' +
+            '<div class="sc-criterio-track">' +
+              '<div class="sc-criterio-fill" style="width:' + val + '%"></div>' +
+            '</div>' +
+            '<span class="sc-criterio-val">' + val + '</span>' +
+          '</div>';
+      }
+
+      return '<article class="panel student-card">' +
+        '<div class="sc-header">' +
+          '<span class="sc-name">' + est.nombre + '</span>' +
+          '<span class="sc-semana-badge">Sem. ' + est.semanaActual + '/12</span>' +
+        '</div>' +
+        '<div class="sc-avance-label">' +
+          '<span>Avance</span>' +
+          '<span class="sc-avance-pct">' + avance + '%</span>' +
+        '</div>' +
+        '<div class="sc-bar-track">' +
+          '<div class="sc-bar-fill" style="width:' + avance + '%"></div>' +
+        '</div>' +
+        '<p class="sc-section-title">Semanas</p>' +
+        '<ul class="sc-semanas-list">' + semanasHtml + '</ul>' +
+        '<p class="sc-section-title">Criterios de evaluacion</p>' +
+        criteriosHtml +
+        '<div class="sc-nota">' +
+          '<div>' +
+            '<span class="sc-nota-label">Nota actual</span>' +
+            '<span class="sc-nota-estado ' + cls + '">' + estado + '</span>' +
+          '</div>' +
+          '<span class="sc-nota-value ' + cls + '">' + nota + '</span>' +
+        '</div>' +
+        '</article>';
+    }
+
+    (function () {
+      var grid = document.getElementById('students-grid');
+      if (grid) grid.innerHTML = ESTUDIANTES.map(renderEstudiante).join('');
+    })();
+  </script>
+</body>
+</html>
