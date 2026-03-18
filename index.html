@@ -508,6 +508,7 @@
 
     .sc-nota-estado.aprobado { color: var(--cyan-soft); }
     .sc-nota-estado.reprobado { color: #e55a5a; }
+    .sc-nota-estado.parcial { color: #f5c842; }
 
     .sc-nota-value {
       font-size: 2.2rem;
@@ -518,6 +519,7 @@
 
     .sc-nota-value.aprobado  { color: var(--cyan-soft); }
     .sc-nota-value.reprobado { color: #e55a5a; }
+    .sc-nota-value.parcial { color: #f5c842; }
 
     @media (max-width: 920px) {
       .students-grid { grid-template-columns: 1fr; }
@@ -647,6 +649,9 @@
       {
         nombre: "Javier",
         semanaActual: 1,
+        enEvaluacion: true,
+        estadoEvaluacion: "Notas parciales",
+        notaDisplay: "—",
         semanas: [
           { num: 1,  titulo: "Onboarding y Git",           estado: "en-curso"  },
           { num: 2,  titulo: "Backend Basico",              estado: "pendiente" },
@@ -712,9 +717,11 @@
     function renderEstudiante(est) {
       var avance = calcularAvance(est.semanas);
       var nota   = calcularNota(est.criterios);
-      var aprobado = parseFloat(nota) >= 4.0;
-      var cls = aprobado ? "aprobado" : "reprobado";
-      var estado = aprobado ? "Aprobado" : "Reprobado";
+      var enEvaluacion = est.enEvaluacion === true;
+      var aprobado = enEvaluacion ? null : (parseFloat(nota) >= 4.0);
+      var cls = enEvaluacion ? "parcial" : (aprobado ? "aprobado" : "reprobado");
+      var estado = enEvaluacion ? (est.estadoEvaluacion || "Parcial") : (aprobado ? "Aprobado" : "Reprobado");
+      var notaDisplay = enEvaluacion ? (est.notaDisplay || "—") : nota;
 
       var semanasHtml = est.semanas.map(function(s) {
         return '<li class="sc-semana-item ' + s.estado + '">' +
@@ -757,7 +764,7 @@
             '<span class="sc-nota-label">Nota actual</span>' +
             '<span class="sc-nota-estado ' + cls + '">' + estado + '</span>' +
           '</div>' +
-          '<span class="sc-nota-value ' + cls + '">' + nota + '</span>' +
+          '<span class="sc-nota-value ' + cls + '">' + notaDisplay + '</span>' +
         '</div>' +
         '</article>';
     }
