@@ -1,21 +1,30 @@
+// Importa Express para crear el servidor HTTP.
 const express = require("express");
 
+// Crea la app y define el puerto de escucha.
 const app = express();
 const port = 3000;
 
+// Middleware para leer JSON en el body.
 app.use(express.json());
 
+// Almacen en memoria y contador incremental de IDs.
 let nextId = 1;
 const tareas = [];
 
+// Endpoint de salud: sirve para verificar que el servidor esta activo.
 app.get("/health", (req, res) => {
   res.status(200).json({ success: true, data: { status: "ok" } });
 });
 
+// ==== Endpoints API: tareas ====
+
+// Lista todas las tareas en memoria.
 app.get("/tareas", (req, res) => {
   res.status(200).json({ success: true, data: tareas });
 });
 
+// Crea una nueva tarea.
 app.post("/tareas", (req, res) => {
   const { titulo, descripcion } = req.body || {};
   if (!titulo || typeof titulo !== "string") {
@@ -38,6 +47,7 @@ app.post("/tareas", (req, res) => {
   return res.status(201).json({ success: true, data: tarea });
 });
 
+// Obtiene una tarea por ID.
 app.get("/tareas/:id", (req, res) => {
   const id = Number(req.params.id);
   const tarea = tareas.find((t) => t.id === id);
@@ -47,6 +57,7 @@ app.get("/tareas/:id", (req, res) => {
   return res.status(200).json({ success: true, data: tarea });
 });
 
+// Actualiza una tarea existente.
 app.put("/tareas/:id", (req, res) => {
   const id = Number(req.params.id);
   const tarea = tareas.find((t) => t.id === id);
@@ -72,6 +83,7 @@ app.put("/tareas/:id", (req, res) => {
   return res.status(200).json({ success: true, data: tarea });
 });
 
+// Elimina una tarea por ID.
 app.delete("/tareas/:id", (req, res) => {
   const id = Number(req.params.id);
   const index = tareas.findIndex((t) => t.id === id);
@@ -83,6 +95,7 @@ app.delete("/tareas/:id", (req, res) => {
   return res.status(200).json({ success: true, data: deleted });
 });
 
+// Levanta el servidor y queda escuchando en el puerto configurado.
 app.listen(port, () => {
   console.log(`Servidor listo en http://localhost:${port}`);
 });
