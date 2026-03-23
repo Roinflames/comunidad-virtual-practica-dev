@@ -1,0 +1,3 @@
+Nombre: JaviDaza
+Fecha: 2026-03-20
+Aprendi hoy: el flujo de GitHub Flow y como aislar cambios en una rama de trabajo.
