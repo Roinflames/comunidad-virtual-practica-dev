@@ -22,7 +22,8 @@ Al finalizar el programa, el estudiante sera capaz de integrarse a un equipo de 
 - Introduccion a Node.js o Python
 - Crear un servidor HTTP simple
 - Rutas, middlewares, respuestas JSON
-- Ejercicio: crear un CRUD basico en memoria
+- Ejercicio: `ejercicios/backend-basico`
+- Aplicar desde esta semana las reglas de ramas, commits y Pull Requests definidas en `docs/reglas-git.md`
 
 ### Semana 3 — APIs REST
 - Que es una API REST y sus convenciones

@@ -62,6 +62,8 @@ comunidad-virtual-practica-dev/
 
 ---
 
+Nota: la semana 2 se trabaja en `ejercicios/backend-basico`, donde ya se exige aplicar las reglas de `docs/reglas-git.md`.
+
 ## Como contribuir
 
 1. Clona este repositorio:
