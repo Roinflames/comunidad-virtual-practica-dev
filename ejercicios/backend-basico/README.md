@@ -94,3 +94,10 @@ No es obligatorio copiar esta estructura exacta, pero la solucion debe ser orden
 - [ ] Se incluyen ejemplos de request o respuestas JSON
 - [ ] No se suben dependencias pesadas ni archivos generados
 - [ ] El historial de commits es entendible
+
+---
+
+## Soluciones de referencia
+
+- Solucion base (HTTP nativo): `ejercicios/backend-basico/src/*`
+- Solucion alternativa (Express, Wellington): `ejercicios/backend-basico/soluciones/wellington/`
