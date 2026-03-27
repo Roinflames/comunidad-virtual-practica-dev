@@ -44,3 +44,9 @@ npm run dev
 - [ ] CRUD completo funciona con datos en memoria
 - [ ] Respuestas JSON consistentes y codigos HTTP correctos
 - [ ] Se uso middleware y rutas separadas (minimo en el mismo archivo)
+
+---
+## Semana 3 — API REST (Documentacion y Pruebas)
+- Ver `API.md` para documentacion de endpoints y checklist
+- Exportar coleccion Postman en `postman/semana-3.postman_collection.json`
+- Evidencias (capturas) disponibles en `postman/`
