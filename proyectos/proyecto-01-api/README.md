@@ -64,6 +64,15 @@ id, titulo, descripcion, completada (bool), usuario_id, created_at, updated_at
 
 ---
 
+## Material de Semana 3
+
+Para la semana 3 se debe documentar y probar esta API antes de implementarla completa.
+
+- Guia de endpoints y pruebas: `SEMANA-3-POSTMAN.md`
+- Coleccion base de Postman: `postman/proyecto-01-api.postman_collection.json`
+
+---
+
 ## Como entregar
 
 1. Crea una rama `feature/tu-nombre/proyecto-01-api`
