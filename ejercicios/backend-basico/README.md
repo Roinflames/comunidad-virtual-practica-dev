@@ -101,3 +101,9 @@ No es obligatorio copiar esta estructura exacta, pero la solucion debe ser orden
 
 - Solucion base (HTTP nativo): `ejercicios/backend-basico/src/*`
 - Solucion alternativa (Express, Wellington): `ejercicios/backend-basico/soluciones/wellington/`
+
+---
+## Semana 3 — API REST (Documentacion y Pruebas)
+- Ver `API.md` para documentacion de endpoints y checklist
+- Exportar coleccion Postman en `postman/semana-3.postman_collection.json`
+- Evidencias (capturas) disponibles en `postman/`
