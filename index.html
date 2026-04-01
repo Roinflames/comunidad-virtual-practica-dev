@@ -521,6 +521,33 @@
     .sc-nota-value.reprobado { color: #e55a5a; }
     .sc-nota-value.parcial { color: #f5c842; }
 
+    .sc-tarea {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: rgba(9, 13, 51, 0.58);
+      border: 1px solid rgba(247, 248, 255, 0.1);
+    }
+
+    .sc-tarea-title {
+      margin: 0 0 10px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cyan-soft);
+    }
+
+    .sc-tarea p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.92rem;
+    }
+
+    .sc-tarea p + p {
+      margin-top: 8px;
+    }
+
     @media (max-width: 920px) {
       .students-grid { grid-template-columns: 1fr; }
       .sc-semanas-list { grid-template-columns: 1fr; }
@@ -623,11 +650,11 @@
     var ESTUDIANTES = [
       {
         nombre: "Wellington",
-        semanaActual: 2,
+        semanaActual: 3,
         semanas: [
           { num: 1,  titulo: "Onboarding y Git",           estado: "completada" },
-          { num: 2,  titulo: "Backend Basico",              estado: "en-curso"  },
-          { num: 3,  titulo: "APIs REST",                   estado: "pendiente" },
+          { num: 2,  titulo: "Backend Basico",              estado: "completada" },
+          { num: 3,  titulo: "APIs REST",                   estado: "completada" },
           { num: 4,  titulo: "Base de Datos",               estado: "pendiente" },
           { num: 5,  titulo: "Proyecto 01: API REST",       estado: "pendiente" },
           { num: 6,  titulo: "Frontend Basico",             estado: "pendiente" },
@@ -638,21 +665,23 @@
           { num: 11, titulo: "Proyecto 03: Automatizacion", estado: "pendiente" },
           { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
         ],
+        objetivoActual: "Semana 3: documentar y validar la API CRUD del backend basico con Postman y evidencias.",
+        entregaActual: "Documentacion en `ejercicios/backend-basico/API.md`, coleccion `postman/semana-3.postman_collection.json` y capturas en `postman/`.",
         criterios: {
-          calidad_codigo: 55,  // 0-100
-          uso_git:        75,
-          funcionalidad:  60,
-          code_reviews:   20,
-          plazos:         70
+          calidad_codigo: 60,  // 0-100
+          uso_git:        80,
+          funcionalidad:  70,
+          code_reviews:   40,
+          plazos:         80
         }
       },
       {
         nombre: "Javier",
-        semanaActual: 2,
+        semanaActual: 3,
         semanas: [
           { num: 1,  titulo: "Onboarding y Git",           estado: "completada" },
-          { num: 2,  titulo: "Backend Basico",              estado: "en-curso"  },
-          { num: 3,  titulo: "APIs REST",                   estado: "pendiente" },
+          { num: 2,  titulo: "Backend Basico",              estado: "completada" },
+          { num: 3,  titulo: "APIs REST",                   estado: "en-curso"  },
           { num: 4,  titulo: "Base de Datos",               estado: "pendiente" },
           { num: 5,  titulo: "Proyecto 01: API REST",       estado: "pendiente" },
           { num: 6,  titulo: "Frontend Basico",             estado: "pendiente" },
@@ -663,12 +692,14 @@
           { num: 11, titulo: "Proyecto 03: Automatizacion", estado: "pendiente" },
           { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
         ],
+        objetivoActual: "Semana 3: documentar y probar la API REST del proyecto 01 mientras se definen los headers y respuestas esperadas.",
+        entregaActual: "Guia de endpoints y casos de prueba en `proyectos/proyecto-01-api/SEMANA-3-POSTMAN.md` y coleccion `proyectos/proyecto-01-api/postman/proyecto-01-api.postman_collection.json`, enlazada desde el README.",
         criterios: {
-          calidad_codigo: 70,
-          uso_git:        85,
-          funcionalidad:  65,
+          calidad_codigo: 40,
+          uso_git:        55,
+          funcionalidad:  35,
           code_reviews:   30,
-          plazos:         75
+          plazos:         50
         }
       }
     ];
@@ -756,6 +787,11 @@
         '<ul class="sc-semanas-list">' + semanasHtml + '</ul>' +
         '<p class="sc-section-title">Criterios de evaluacion</p>' +
         criteriosHtml +
+        '<div class="sc-tarea">' +
+          '<p class="sc-tarea-title">Objetivo semana 3</p>' +
+          '<p>' + (est.objetivoActual || "Definir objetivo actual") + '</p>' +
+          '<p><strong>Entrega:</strong> ' + (est.entregaActual || "Pendiente de definir") + '</p>' +
+        '</div>' +
         '<div class="sc-nota">' +
           '<div>' +
             '<span class="sc-nota-label">Nota actual</span>' +
