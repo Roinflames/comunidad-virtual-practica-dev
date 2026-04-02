@@ -672,7 +672,8 @@
           uso_git:        80,
           funcionalidad:  70,
           code_reviews:   40,
-          plazos:         80
+          plazos:         80,
+          trabajo_equipo: 80
         }
       },
       {
@@ -699,18 +700,20 @@
           uso_git:        55,
           funcionalidad:  35,
           code_reviews:   30,
-          plazos:         50
+          plazos:         50,
+          trabajo_equipo: 75
         }
       }
     ];
 
     // Pesos de criterios (deben sumar 1.0)
     var PESOS = {
-      calidad_codigo: 0.25,
-      uso_git:        0.20,
-      funcionalidad:  0.30,
+      calidad_codigo: 0.20,
+      uso_git:        0.15,
+      funcionalidad:  0.25,
       code_reviews:   0.15,
-      plazos:         0.10
+      plazos:         0.10,
+      trabajo_equipo: 0.15
     };
 
     var LABELS = {
@@ -718,7 +721,8 @@
       uso_git:        "Uso de Git",
       funcionalidad:  "Funcionalidad",
       code_reviews:   "Code reviews",
-      plazos:         "Plazos"
+      plazos:         "Plazos",
+      trabajo_equipo: "Trabajo en equipo"
     };
 
     function calcularNota(criterios) {
