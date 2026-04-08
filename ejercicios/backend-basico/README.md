@@ -100,7 +100,7 @@ No es obligatorio copiar esta estructura exacta, pero la solucion debe ser orden
 ## Soluciones de referencia
 
 - Solucion base (HTTP nativo): `ejercicios/backend-basico/src/*`
-- Solucion alternativa (Express, Wellington): `ejercicios/backend-basico/soluciones/wellington/`
+- Solucion alternativa (Express, Wellington): `ejercicios/backend-basico/soluciones/wellington-semana-4/`
 
 ---
 ## Semana 3 — API REST (Documentacion y Pruebas)
