@@ -650,12 +650,12 @@
     var ESTUDIANTES = [
       {
         nombre: "Wellington",
-        semanaActual: 3,
+        semanaActual: 4,
         semanas: [
           { num: 1,  titulo: "Onboarding y Git",           estado: "completada" },
           { num: 2,  titulo: "Backend Basico",              estado: "completada" },
           { num: 3,  titulo: "APIs REST",                   estado: "completada" },
-          { num: 4,  titulo: "Base de Datos",               estado: "pendiente" },
+          { num: 4,  titulo: "Base de Datos",               estado: "en-curso"  },
           { num: 5,  titulo: "Proyecto 01: API REST",       estado: "pendiente" },
           { num: 6,  titulo: "Frontend Basico",             estado: "pendiente" },
           { num: 7,  titulo: "Proyecto 02: Frontend",       estado: "pendiente" },
@@ -665,13 +665,13 @@
           { num: 11, titulo: "Proyecto 03: Automatizacion", estado: "pendiente" },
           { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
         ],
-        objetivoActual: "Semana 3: documentar y validar la API CRUD del backend basico con Postman y evidencias.",
-        entregaActual: "Documentacion en `ejercicios/backend-basico/API.md`, coleccion `postman/semana-3.postman_collection.json` y capturas en `postman/`.",
+        objetivoActual: "Semana 4: reemplazar el array en memoria por persistencia real en PostgreSQL. CRUD completo via pg con schema, seed y variables de entorno.",
+        entregaActual: "PR #8 aprobado con observaciones: agregar try/catch en todos los handlers y validar que :id sea un entero antes de la query.",
         criterios: {
-          calidad_codigo: 60,  // 0-100
+          calidad_codigo: 55,  // 0-100 — buen estructura, falta manejo de errores async
           uso_git:        80,
-          funcionalidad:  70,
-          code_reviews:   40,
+          funcionalidad:  75,
+          code_reviews:   50,
           plazos:         80,
           trabajo_equipo: 80
         }
