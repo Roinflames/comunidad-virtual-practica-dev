@@ -650,14 +650,14 @@
     var ESTUDIANTES = [
       {
         nombre: "Wellington",
-        semanaActual: 4,
+        semanaActual: 6,
         semanas: [
           { num: 1,  titulo: "Onboarding y Git",           estado: "completada" },
           { num: 2,  titulo: "Backend Basico",              estado: "completada" },
           { num: 3,  titulo: "APIs REST",                   estado: "completada" },
-          { num: 4,  titulo: "Base de Datos",               estado: "en-curso"  },
-          { num: 5,  titulo: "Proyecto 01: API REST",       estado: "pendiente" },
-          { num: 6,  titulo: "Frontend Basico",             estado: "pendiente" },
+          { num: 4,  titulo: "Base de Datos",               estado: "completada" },
+          { num: 5,  titulo: "Proyecto 01: API REST",       estado: "completada" },
+          { num: 6,  titulo: "Frontend Basico",             estado: "en-curso"   },
           { num: 7,  titulo: "Proyecto 02: Frontend",       estado: "pendiente" },
           { num: 8,  titulo: "Debugging y Calidad",         estado: "pendiente" },
           { num: 9,  titulo: "Refactoring",                 estado: "pendiente" },
@@ -665,13 +665,13 @@
           { num: 11, titulo: "Proyecto 03: Automatizacion", estado: "pendiente" },
           { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
         ],
-        objetivoActual: "Semana 4: reemplazar el array en memoria por persistencia real en PostgreSQL. CRUD completo via pg con schema, seed y variables de entorno.",
-        entregaActual: "PR #8 aprobado con observaciones: agregar try/catch en todos los handlers y validar que :id sea un entero antes de la query.",
+        objetivoActual: "Semana 6: implementar un frontend basico (HTML/CSS/JS vanilla) que consuma la API REST del proyecto 01.",
+        entregaActual: "PR #9 aprobado: Auth JWT completo (registro/login), CRUD de tareas protegido por usuario, arquitectura MVC (controller/service/model), validaciones en todos los handlers, parametrized queries, evidencias Postman. Observacion menor: evidencia 03 faltante en carpeta.",
         criterios: {
-          calidad_codigo: 55,  // 0-100 — buen estructura, falta manejo de errores async
-          uso_git:        80,
-          funcionalidad:  75,
-          code_reviews:   50,
+          calidad_codigo: 85,  // 0-100 — arquitectura MVC solida, try/catch en todos los handlers, queries parametrizadas
+          uso_git:        85,
+          funcionalidad:  90,  // Auth+CRUD completo con JWT, aislamiento por usuario, todo evidenciado
+          code_reviews:   70,  // resolvio las observaciones del PR anterior (try/catch, validacion de id)
           plazos:         80,
           trabajo_equipo: 80
         }
@@ -693,14 +693,14 @@
           { num: 11, titulo: "Proyecto 03: Automatizacion", estado: "pendiente" },
           { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
         ],
-        objetivoActual: "Semana 3: documentar y probar la API REST del proyecto 01 mientras se definen los headers y respuestas esperadas.",
-        entregaActual: "Guia de endpoints y casos de prueba en `proyectos/proyecto-01-api/SEMANA-3-POSTMAN.md` y coleccion `proyectos/proyecto-01-api/postman/proyecto-01-api.postman_collection.json`, enlazada desde el README.",
+        objetivoActual: "Semana 3: implementar la API REST completa del proyecto 01 (CRUD /tareas) con los endpoints documentados en SEMANA-3-POSTMAN.md.",
+        entregaActual: "PR #7 aprobado: guia de endpoints, coleccion Postman base y README actualizado. Siguiente paso: implementar los endpoints documentados y agregar evidencias de prueba.",
         criterios: {
           calidad_codigo: 60,
           uso_git:        65,
-          funcionalidad:  55,
+          funcionalidad:  50,  // solo documentacion, sin implementacion de la API aun
           code_reviews:   30,
-          plazos:         50,
+          plazos:         45,  // semana 3 lleva mas de 3 semanas en curso (abierto 2026-03-27)
           trabajo_equipo: 75
         }
       }
