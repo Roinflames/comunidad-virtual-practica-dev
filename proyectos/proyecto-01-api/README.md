@@ -1,80 +1,131 @@
-# Proyecto 01 — API REST
+# Proyecto 01 - API REST
 
-**Objetivo:** Construir una API REST funcional con autenticacion, CRUD completo y base de datos persistente.
+API REST de tareas con usuarios, autenticacion JWT, validacion de entradas y persistencia en SQLite.
 
-**Nivel:** Basico-Intermedio
-**Semana del programa:** 5
-**Stack sugerido:** Node.js + Express + SQLite (o Python + FastAPI + SQLite)
+## Requisitos cubiertos
 
----
+- Estructura por capas: `routes -> controllers -> services -> models`
+- Registro y login con password hasheado
+- JWT firmado con `crypto` nativo
+- CRUD de tareas protegido por autenticacion
+- Validacion de entradas en todos los endpoints
+- Respuestas JSON con formato estandar
+- `.env.example`, `.gitignore`, migraciones y seed opcional
 
-## Descripcion
+## Estructura
 
-Desarrollaras una API para gestionar una lista de tareas (TODO list) con usuarios. Cada usuario puede crear, leer, actualizar y eliminar sus propias tareas.
-
----
-
-## Requisitos Funcionales
-
-### Autenticacion
-- `POST /auth/registro` — crear cuenta con nombre, email y password
-- `POST /auth/login` — autenticarse y recibir un token JWT
-- Las rutas de tareas requieren token valido en el header `Authorization: Bearer <token>`
-
-### Tareas (requieren autenticacion)
-- `GET /tareas` — listar todas las tareas del usuario autenticado
-- `POST /tareas` — crear una tarea nueva
-- `GET /tareas/:id` — obtener una tarea por ID
-- `PUT /tareas/:id` — actualizar una tarea
-- `DELETE /tareas/:id` — eliminar una tarea
-
-### Modelo de datos
-
-**Usuario:**
-```
-id, nombre, email, password (hash), created_at
-```
-
-**Tarea:**
-```
-id, titulo, descripcion, completada (bool), usuario_id, created_at, updated_at
+```text
+proyecto-01-api/
+|-- src/
+|   |-- config/
+|   |-- controllers/
+|   |-- db/
+|   |-- middlewares/
+|   |-- models/
+|   |-- routes/
+|   |-- services/
+|   |-- utils/
+|   `-- index.js
+|-- migrations/
+|-- seeds/
+|-- db/
+|-- .env.example
+|-- .gitignore
+|-- Dockerfile
+`-- package.json
 ```
 
----
+## Instalar y ejecutar
 
-## Requisitos Tecnicos
+```bash
+cd proyectos/proyecto-01-api
+npm install
+npm start
+```
 
-- [ ] Estructura por capas: routes → controllers → services → models
-- [ ] Passwords hasheados (nunca en texto plano)
-- [ ] Validacion de entradas en todos los endpoints
-- [ ] Respuestas JSON con formato estandar (`success`, `data`, `error`)
-- [ ] Codigos HTTP correctos (200, 201, 400, 401, 404, 500)
-- [ ] Archivo `.env.example` con todas las variables necesarias
-- [ ] `.gitignore` que excluya `.env`, `node_modules`, archivos de BD
+Servidor por defecto:
 
----
+```text
+http://localhost:3000
+```
 
-## Criterios de Evaluacion
+## Variables de entorno
 
-- [ ] Todos los endpoints funcionan correctamente (probados en Postman)
-- [ ] La autenticacion protege las rutas correctamente
-- [ ] El codigo sigue la estructura de capas definida en `docs/arquitectura.md`
-- [ ] Los commits siguen las convenciones de `docs/reglas-git.md`
-- [ ] El README del proyecto explica como instalarlo y probarlo
+1. Copia `.env.example` como `.env`
+2. Ajusta los valores si lo necesitas
 
----
+Variables principales:
 
-## Material de Semana 3
+```env
+PORT=3000
+DATABASE_URL=./db/proyecto-01-api.sqlite
+JWT_SECRET=cambia-este-secreto
+JWT_EXPIRES_IN=3600
+```
 
-Para la semana 3 se debe documentar y probar esta API antes de implementarla completa.
+## Endpoints
 
-- Guia de endpoints y pruebas: `SEMANA-3-POSTMAN.md`
-- Coleccion base de Postman: `postman/proyecto-01-api.postman_collection.json`
+### Auth
 
----
+- `POST /auth/registro`
+- `POST /auth/login`
 
-## Como entregar
+### Tareas
 
-1. Crea una rama `feature/tu-nombre/proyecto-01-api`
-2. Trabaja dentro de esta carpeta (`proyectos/proyecto-01-api/`)
-3. Al terminar, abre un Pull Request con el template correspondiente
+Todas requieren:
+
+```http
+Authorization: Bearer <token>
+```
+
+- `GET /tareas`
+- `POST /tareas`
+- `GET /tareas/:id`
+- `PUT /tareas/:id`
+- `DELETE /tareas/:id`
+
+## Ejemplos
+
+Registro:
+
+```bash
+curl -X POST http://localhost:3000/auth/registro ^
+  -H "Content-Type: application/json" ^
+  -d "{\"nombre\":\"Javier Daza\",\"email\":\"javier@example.com\",\"password\":\"12345678\"}"
+```
+
+Login:
+
+```bash
+curl -X POST http://localhost:3000/auth/login ^
+  -H "Content-Type: application/json" ^
+  -d "{\"email\":\"javier@example.com\",\"password\":\"12345678\"}"
+```
+
+Crear tarea:
+
+```bash
+curl -X POST http://localhost:3000/tareas ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer TU_TOKEN" ^
+  -d "{\"titulo\":\"Documentar endpoints\",\"descripcion\":\"Preparar guia para Postman\",\"completada\":false}"
+```
+
+## Scripts
+
+```bash
+npm start
+npm run db:migrate
+npm run db:seed
+```
+
+`npm start` ejecuta migraciones antes de levantar el servidor.
+
+## Estado de semana 5
+
+- [x] Desarrollo del `proyecto-01-api`
+- [x] Autenticacion basica con JWT
+- [x] Validacion de entradas
+- [x] README listo para review
+
+Para la parte de code review con encargado, el siguiente paso fuera de este cambio es abrir la rama y el Pull Request siguiendo `docs/reglas-git.md`.
