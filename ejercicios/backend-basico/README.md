@@ -1,81 +1,94 @@
-# Ejercicio: Backend Basico
+# Backend Basico - Semana 4
 
-**Objetivo:** Construir una API CRUD en memoria aplicando desde el inicio las reglas de ramas, commits y Pull Requests del programa.
+Esta version lleva el CRUD de tareas de la semana 2 a lo que pide la semana 4: persistencia real con `SQLite`, migraciones y datos de prueba.
 
-**Nivel:** Principiante - Basico
-**Duracion estimada:** 4-6 horas
-**Semana del programa:** 2
-**Stack sugerido:** Node.js + Express o Python + FastAPI
+## Requisitos cubiertos
 
----
+- CRUD persistente en base de datos
+- Operaciones SQL base: `SELECT`, `INSERT`, `UPDATE`, `DELETE`
+- Conexion desde Node.js a SQLite
+- Migracion inicial en `migrations/`
+- Datos de prueba en `seeds/`
 
-## Descripcion
+## Ejecutar
 
-En esta semana el estudiante debe levantar un servidor HTTP simple y exponer un CRUD de tareas en memoria. No se usa base de datos todavia: el foco esta en entender rutas, estructura minima del backend y disciplina de trabajo con Git.
+```bash
+cd ejercicios/backend-basico
+npm install
+npm start
+```
 
----
+Servidor por defecto:
 
-## Reglas aplicadas desde esta semana
+```text
+http://localhost:3000
+```
 
-Todo el trabajo de esta entrega debe seguir `docs/reglas-git.md`.
+Base de datos por defecto:
 
-- La rama debe llamarse `feature/tu-nombre/backend-basico`
-- No se trabaja directamente en `main`
-- Cada commit debe usar prefijos validos (`feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:`)
-- El PR debe abrirse usando `templates/pull_request_template.md`
-- Antes de pedir revision, la rama debe sincronizarse con `main`
+```text
+ejercicios/backend-basico/db/tasks.sqlite
+```
 
----
+Puedes cambiar la ruta con la variable `DATABASE_URL`.
 
-## Requisitos funcionales
+## Scripts utiles
 
-Implementa una API con estos endpoints:
+```bash
+npm run db:migrate
+npm run db:seed
+```
 
-- `GET /health` devuelve un estado simple del servidor
-- `GET /tareas` lista todas las tareas en memoria
-- `GET /tareas/:id` obtiene una tarea por id
-- `POST /tareas` crea una tarea
-- `PUT /tareas/:id` actualiza una tarea existente
-- `DELETE /tareas/:id` elimina una tarea
+`npm start` ejecuta migraciones y solo carga seeds automaticamente la primera vez que se crea la base.
 
-Modelo sugerido:
+## Endpoints
+
+- `GET /health`
+- `GET /tareas`
+- `GET /tareas/:id`
+- `POST /tareas`
+- `PUT /tareas/:id`
+- `DELETE /tareas/:id`
+
+Modelo actual:
 
 ```json
 {
   "id": 1,
   "titulo": "Preparar entrega",
-  "completada": false
+  "completada": false,
+  "created_at": "2026-04-16 04:00:00",
+  "updated_at": "2026-04-16 04:00:00"
 }
 ```
 
----
+## Ejemplos
 
-## Requisitos tecnicos
+Crear tarea:
 
-- [ ] El proyecto corre localmente con un comando claro (`npm run dev`, `npm start`, `uvicorn`, etc.)
-- [ ] La API responde en JSON
-- [ ] Se usan codigos HTTP correctos (`200`, `201`, `400`, `404`)
-- [ ] Hay validacion minima en `POST` y `PUT`
-- [ ] Los datos se mantienen en memoria durante la ejecucion
-- [ ] Existe un `README.md` dentro del proyecto o carpeta de solucion con pasos de ejecucion
-
----
-
-## Estructura minima sugerida
-
-```text
-backend-basico/
-├── src/
-│   ├── app.(js|py)
-│   ├── routes/
-│   └── data/
-├── README.md
-└── .gitignore
+```bash
+curl -X POST http://localhost:3000/tareas ^
+  -H "Content-Type: application/json" ^
+  -d "{\"titulo\":\"Practicar SQL\",\"completada\":false}"
 ```
 
-No es obligatorio copiar esta estructura exacta, pero la solucion debe ser ordenada y facil de revisar.
+Actualizar tarea:
 
----
+```bash
+curl -X PUT http://localhost:3000/tareas/1 ^
+  -H "Content-Type: application/json" ^
+  -d "{\"titulo\":\"Practicar SQL y migraciones\",\"completada\":true}"
+```
+
+## Estructura
+
+- `src/data`: acceso a datos en SQLite
+- `src/db`: conexion e inicializacion de base de datos
+- `src/services`: validacion y reglas simples
+- `src/controllers`: respuestas HTTP en JSON
+- `src/scripts`: scripts manuales de migracion y seed
+- `migrations/`: esquema SQL versionado
+- `seeds/`: datos de prueba
 
 ## Entrega
 
@@ -85,8 +98,6 @@ No es obligatorio copiar esta estructura exacta, pero la solucion debe ser orden
 4. Sincroniza tu rama con `main`
 5. Abre un Pull Request
 
----
-
 ## Checklist del PR
 
 - [ ] El titulo del PR describe el cambio
@@ -95,15 +106,13 @@ No es obligatorio copiar esta estructura exacta, pero la solucion debe ser orden
 - [ ] No se suben dependencias pesadas ni archivos generados
 - [ ] El historial de commits es entendible
 
----
-
 ## Soluciones de referencia
 
 - Solucion base (HTTP nativo): `ejercicios/backend-basico/src/*`
 - Solucion alternativa (Express, Wellington): `ejercicios/backend-basico/soluciones/wellington/`
 
----
-## Semana 3 — API REST (Documentacion y Pruebas)
+## Semana 3 - API REST (Documentacion y Pruebas)
+
 - Ver `API.md` para documentacion de endpoints y checklist
 - Exportar coleccion Postman en `postman/semana-3.postman_collection.json`
 - Evidencias (capturas) disponibles en `postman/`

@@ -39,50 +39,61 @@ function extractTaskId(url) {
   return match ? Number(match[1]) : null;
 }
 
+async function parseJsonBodyOrSendError(request, response) {
+  try {
+    return await parseJsonBody(request);
+  } catch (_error) {
+    sendError(response, 400, "El body debe ser JSON valido.");
+    return null;
+  }
+}
+
 async function requestListener(request, response) {
   const { method, url } = request;
   const taskId = extractTaskId(url);
 
-  if (method === "GET" && url === "/health") {
-    getHealth(request, response);
-    return;
-  }
-
-  if (method === "GET" && url === "/tareas") {
-    getTasks(request, response);
-    return;
-  }
-
-  if (method === "GET" && taskId !== null) {
-    getTask(request, response, taskId);
-    return;
-  }
-
-  if (method === "POST" && url === "/tareas") {
-    try {
-      const body = await parseJsonBody(request);
-      createTaskController(request, response, body);
-    } catch (_error) {
-      sendError(response, 400, "El body debe ser JSON valido.");
+  try {
+    if (method === "GET" && url === "/health") {
+      getHealth(request, response);
+      return;
     }
 
-    return;
-  }
-
-  if (method === "PUT" && taskId !== null) {
-    try {
-      const body = await parseJsonBody(request);
-      updateTaskController(request, response, taskId, body);
-    } catch (_error) {
-      sendError(response, 400, "El body debe ser JSON valido.");
+    if (method === "GET" && url === "/tareas") {
+      await getTasks(request, response);
+      return;
     }
 
-    return;
-  }
+    if (method === "GET" && taskId !== null) {
+      await getTask(request, response, taskId);
+      return;
+    }
 
-  if (method === "DELETE" && taskId !== null) {
-    deleteTaskController(request, response, taskId);
-    return;
+    if (method === "POST" && url === "/tareas") {
+      const body = await parseJsonBodyOrSendError(request, response);
+
+      if (body) {
+        await createTaskController(request, response, body);
+      }
+
+      return;
+    }
+
+    if (method === "PUT" && taskId !== null) {
+      const body = await parseJsonBodyOrSendError(request, response);
+
+      if (body) {
+        await updateTaskController(request, response, taskId, body);
+      }
+
+      return;
+    }
+
+    if (method === "DELETE" && taskId !== null) {
+      await deleteTaskController(request, response, taskId);
+      return;
+    }
+  } catch (_error) {
+    sendError(response, 500, "Error interno del servidor.");
   }
 
   sendError(response, 404, "Ruta no encontrada.");

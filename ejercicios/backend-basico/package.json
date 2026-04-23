@@ -2,10 +2,15 @@
   "name": "backend-basico-semana-2",
   "version": "1.0.0",
   "private": true,
-  "description": "API CRUD en memoria para la semana 2 del programa de practica.",
+  "description": "API CRUD con persistencia SQLite para la semana 4 del programa de practica.",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
+    "db:migrate": "node src/scripts/migrate.js",
+    "db:seed": "node src/scripts/seed.js",
     "dev": "node src/index.js"
+  },
+  "dependencies": {
+    "sqlite3": "^6.0.1"
   }
 }

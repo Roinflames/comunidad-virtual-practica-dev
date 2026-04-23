@@ -22,33 +22,33 @@ function validateTaskPayload(payload) {
   return null;
 }
 
-function listTasks() {
+async function listTasks() {
   return getTasks();
 }
 
-function findTask(id) {
+async function findTask(id) {
   return getTaskById(id);
 }
 
-function addTask(payload) {
+async function addTask(payload) {
   const validationError = validateTaskPayload(payload);
 
   if (validationError) {
     return { error: validationError };
   }
 
-  const task = createTask(payload.titulo.trim(), payload.completada);
+  const task = await createTask(payload.titulo.trim(), payload.completada);
   return { data: task };
 }
 
-function editTask(id, payload) {
+async function editTask(id, payload) {
   const validationError = validateTaskPayload(payload);
 
   if (validationError) {
     return { error: validationError };
   }
 
-  const task = updateTask(id, payload.titulo.trim(), payload.completada);
+  const task = await updateTask(id, payload.titulo.trim(), payload.completada);
 
   if (!task) {
     return { error: "Tarea no encontrada.", code: 404 };
@@ -57,8 +57,8 @@ function editTask(id, payload) {
   return { data: task };
 }
 
-function removeTask(id) {
-  const deleted = deleteTask(id);
+async function removeTask(id) {
+  const deleted = await deleteTask(id);
 
   if (!deleted) {
     return { error: "Tarea no encontrada.", code: 404 };
