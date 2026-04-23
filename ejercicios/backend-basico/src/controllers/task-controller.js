@@ -33,12 +33,13 @@ function getHealth(_request, response) {
   sendSuccess(response, 200, { status: "ok" }, "Servidor operativo.");
 }
 
-function getTasks(_request, response) {
-  sendSuccess(response, 200, listTasks(), "Listado de tareas.");
+async function getTasks(_request, response) {
+  const tasks = await listTasks();
+  sendSuccess(response, 200, tasks, "Listado de tareas.");
 }
 
-function getTask(_request, response, id) {
-  const task = findTask(id);
+async function getTask(_request, response, id) {
+  const task = await findTask(id);
 
   if (!task) {
     sendError(response, 404, "Tarea no encontrada.");
@@ -48,8 +49,8 @@ function getTask(_request, response, id) {
   sendSuccess(response, 200, task, "Tarea encontrada.");
 }
 
-function createTaskController(_request, response, body) {
-  const result = addTask(body);
+async function createTaskController(_request, response, body) {
+  const result = await addTask(body);
 
   if (result.error) {
     sendError(response, 400, result.error);
@@ -59,8 +60,8 @@ function createTaskController(_request, response, body) {
   sendSuccess(response, 201, result.data, "Tarea creada.");
 }
 
-function updateTaskController(_request, response, id, body) {
-  const result = editTask(id, body);
+async function updateTaskController(_request, response, id, body) {
+  const result = await editTask(id, body);
 
   if (result.error) {
     sendError(response, result.code || 400, result.error);
@@ -70,8 +71,8 @@ function updateTaskController(_request, response, id, body) {
   sendSuccess(response, 200, result.data, "Tarea actualizada.");
 }
 
-function deleteTaskController(_request, response, id) {
-  const result = removeTask(id);
+async function deleteTaskController(_request, response, id) {
+  const result = await removeTask(id);
 
   if (result.error) {
     sendError(response, result.code || 404, result.error);

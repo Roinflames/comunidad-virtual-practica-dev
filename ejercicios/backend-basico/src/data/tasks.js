@@ -1,54 +1,62 @@
-const tasks = [
-  {
-    id: 1,
-    titulo: "Preparar entrega",
-    completada: false
-  }
-];
+const { all, get, run } = require("../db/database");
 
-let nextTaskId = 2;
-
-function getTasks() {
-  return tasks;
-}
-
-function getTaskById(id) {
-  return tasks.find((task) => task.id === id) || null;
-}
-
-function createTask(titulo, completada) {
-  const task = {
-    id: nextTaskId,
-    titulo,
-    completada
-  };
-
-  nextTaskId += 1;
-  tasks.push(task);
-  return task;
-}
-
-function updateTask(id, titulo, completada) {
-  const task = getTaskById(id);
-
-  if (!task) {
+function mapTask(row) {
+  if (!row) {
     return null;
   }
 
-  task.titulo = titulo;
-  task.completada = completada;
-  return task;
+  return {
+    id: row.id,
+    titulo: row.titulo,
+    completada: Boolean(row.completada),
+    created_at: row.created_at,
+    updated_at: row.updated_at
+  };
 }
 
-function deleteTask(id) {
-  const taskIndex = tasks.findIndex((task) => task.id === id);
+async function getTasks() {
+  const rows = await all("SELECT id, titulo, completada, created_at, updated_at FROM tasks ORDER BY id ASC");
+  return rows.map(mapTask);
+}
 
-  if (taskIndex === -1) {
-    return false;
+async function getTaskById(id) {
+  const row = await get(
+    "SELECT id, titulo, completada, created_at, updated_at FROM tasks WHERE id = ?",
+    [id]
+  );
+
+  return mapTask(row);
+}
+
+async function createTask(titulo, completada) {
+  const result = await run("INSERT INTO tasks (titulo, completada) VALUES (?, ?)", [
+    titulo,
+    completada ? 1 : 0
+  ]);
+
+  return getTaskById(result.lastID);
+}
+
+async function updateTask(id, titulo, completada) {
+  const result = await run(
+    `
+      UPDATE tasks
+      SET titulo = ?, completada = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `,
+    [titulo, completada ? 1 : 0, id]
+  );
+
+  if (result.changes === 0) {
+    return null;
   }
 
-  tasks.splice(taskIndex, 1);
-  return true;
+  return getTaskById(id);
+}
+
+async function deleteTask(id) {
+  const result = await run("DELETE FROM tasks WHERE id = ?", [id]);
+  return result.changes > 0;
 }
 
 module.exports = {
