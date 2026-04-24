@@ -11,12 +11,26 @@ async function request(pathname, options = {}) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE_URL}${pathname}`, {
-    ...options,
-    headers
-  });
+  let response;
+
+  try {
+    response = await fetch(`${API_BASE_URL}${pathname}`, {
+      ...options,
+      headers
+    });
+  } catch (_error) {
+    const networkError = new Error(
+      "No fue posible conectar con la API. Revisa que proyecto-01-api este levantado."
+    );
+    networkError.status = 0;
+    throw networkError;
+  }
 
   let payload = null;
+
+  if (response.status === 204) {
+    return null;
+  }
 
   try {
     payload = await response.json();
