@@ -1,0 +1,9 @@
+{
+  "name": "proyecto-02-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend basico para consumir la API del proyecto 01 en la semana 6.",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

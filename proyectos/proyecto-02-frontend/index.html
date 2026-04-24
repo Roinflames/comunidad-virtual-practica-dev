@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto 02 Frontend</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="hero-panel">
+        <p class="eyebrow">Semana 6</p>
+        <h1>Frontend basico para tu API de tareas</h1>
+        <p class="hero-copy">
+          Una interfaz simple para registrar usuarios, iniciar sesion y gestionar tareas usando el
+          proyecto 01.
+        </p>
+        <div class="hero-status">
+          <span class="status-label">API objetivo</span>
+          <code id="api-base-url">cargando...</code>
+        </div>
+      </aside>
+
+      <main class="app-panel">
+        <section id="feedback-banner" class="feedback-banner hidden"></section>
+
+        <section id="auth-view" class="card auth-card">
+          <div class="tabs">
+            <button class="tab-button active" data-mode="login" type="button">Login</button>
+            <button class="tab-button" data-mode="register" type="button">Registro</button>
+          </div>
+
+          <div class="card-copy">
+            <h2 id="auth-title">Inicia sesion</h2>
+            <p id="auth-subtitle">Usa tu cuenta del proyecto 01 para entrar al dashboard.</p>
+          </div>
+
+          <form id="auth-form" class="stack-form">
+            <label id="name-field" class="field hidden">
+              <span>Nombre</span>
+              <input id="auth-name" name="nombre" type="text" autocomplete="name" />
+            </label>
+
+            <label class="field">
+              <span>Email</span>
+              <input id="auth-email" name="email" type="email" autocomplete="email" required />
+            </label>
+
+            <label class="field">
+              <span>Password</span>
+              <input
+                id="auth-password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+              />
+            </label>
+
+            <button id="auth-submit" class="primary-button" type="submit">Entrar</button>
+          </form>
+        </section>
+
+        <section id="dashboard-view" class="hidden">
+          <header class="card dashboard-header">
+            <div>
+              <p class="eyebrow">Dashboard</p>
+              <h2 id="dashboard-user">Hola</h2>
+              <p class="dashboard-copy">Administra tus tareas sin salir del navegador.</p>
+            </div>
+            <button id="logout-button" class="ghost-button" type="button">Cerrar sesion</button>
+          </header>
+
+          <section class="dashboard-grid">
+            <article class="card composer-card">
+              <div class="card-copy">
+                <h3>Nueva tarea</h3>
+                <p>Agrega una tarea con titulo claro y una descripcion breve.</p>
+              </div>
+
+              <form id="task-form" class="stack-form">
+                <label class="field">
+                  <span>Titulo</span>
+                  <input id="task-title" name="titulo" type="text" required />
+                </label>
+
+                <label class="field">
+                  <span>Descripcion</span>
+                  <textarea id="task-description" name="descripcion" rows="4"></textarea>
+                </label>
+
+                <button id="task-submit" class="primary-button" type="submit">Crear tarea</button>
+              </form>
+            </article>
+
+            <article class="card task-list-card">
+              <div class="task-list-header">
+                <div>
+                  <h3>Tus tareas</h3>
+                  <p id="task-summary">Cargando tareas...</p>
+                </div>
+                <button id="refresh-button" class="ghost-button" type="button">Recargar</button>
+              </div>
+
+              <div id="task-loading" class="inline-state hidden">Cargando tareas...</div>
+              <div id="task-empty" class="inline-state hidden">Todavia no tienes tareas.</div>
+              <ul id="task-list" class="task-list"></ul>
+            </article>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="/config.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

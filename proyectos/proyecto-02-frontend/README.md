@@ -1,71 +1,81 @@
-# Proyecto 02 — Frontend
+# Proyecto 02 - Frontend
 
-**Objetivo:** Construir una interfaz web que consuma la API del Proyecto 01, con login, listado y gestion de tareas.
+Base de frontend para la semana 6: una interfaz web simple que consume la API del proyecto 01 con login, registro y dashboard de tareas.
 
-**Nivel:** Basico-Intermedio
-**Semana del programa:** 7
-**Stack sugerido:** React (Vite) o Ionic + React
-**Prerrequisito:** tener el Proyecto 01 funcionando localmente
+## Alcance de semana 6
 
----
+- Pantalla de login y registro
+- Dashboard con listado de tareas
+- Crear tarea desde la UI
+- Marcar tarea como completada o pendiente
+- Eliminar tarea
+- Guardar JWT en `localStorage`
+- Mostrar estados de carga y error en pantalla
 
-## Descripcion
+La idea es dejar la base funcional para que en semana 7 se profundice el proyecto de frontend completo.
 
-Desarrollaras la capa visual para la API de tareas construida en el proyecto anterior. Los usuarios podran registrarse, iniciar sesion, y gestionar sus tareas desde el navegador.
+## Requisitos
 
----
+- Tener disponible la API del proyecto 01
+- Node.js 18+ para levantar este frontend estatico
 
-## Pantallas Requeridas
+## Configuracion
 
-### Pagina de Login / Registro
-- Formulario de login (email + password)
-- Link o tab para cambiar a registro
-- Validacion de campos antes de enviar
-- Manejo de errores (credenciales incorrectas, email ya existe)
-- Redireccion al Dashboard si el login es exitoso
+1. Copia `.env.example` como `.env`
+2. Ajusta `API_BASE_URL` si tu API corre en otra URL
 
-### Dashboard (requiere sesion iniciada)
-- Listado de tareas del usuario autenticado
-- Formulario para agregar una nueva tarea (titulo + descripcion)
-- Boton para marcar tarea como completada / pendiente
-- Boton para eliminar tarea
-- Indicador visual de estado de cada tarea (completada / pendiente)
-- Boton de cerrar sesion
+Variables:
 
----
+```env
+PORT=4173
+API_BASE_URL=http://localhost:3000
+```
 
-## Requisitos Tecnicos
+## Ejecutar
 
-- [ ] El token JWT se guarda en `localStorage` y se envia en cada request
-- [ ] Si el token vence o es invalido, redirigir automaticamente al login
-- [ ] Las llamadas a la API estan encapsuladas en `/services/api.js` (no hacer fetch directo desde componentes)
-- [ ] Manejo de estados de carga (loading) y error en la UI
-- [ ] Variables de entorno para la URL base de la API (`.env.example`)
-- [ ] La app no se rompe si la API no esta disponible: mostrar mensaje de error
+```bash
+cd proyectos/proyecto-02-frontend
+npm start
+```
 
----
+Frontend por defecto:
 
-## Diseño
+```text
+http://localhost:4173
+```
 
-No hay requisitos de diseño especifico, pero se esperan:
-- Estructura visual ordenada y limpia
-- Diferenciacion visual entre tareas completadas y pendientes
-- Formularios con feedback claro (errores, exito)
-- Responsive basico (que funcione en pantallas de 768px+)
+## Estructura
 
----
+```text
+proyecto-02-frontend/
+|-- src/
+|   |-- components/
+|   |-- services/
+|   |-- utils/
+|   |-- main.js
+|   `-- styles.css
+|-- .env.example
+|-- .gitignore
+|-- index.html
+|-- package.json
+|-- server.js
+`-- README.md
+```
 
-## Criterios de Evaluacion
+## Flujo cubierto
 
-- [ ] El flujo completo funciona: registro → login → crear tarea → completar → eliminar → logout
-- [ ] Los errores de la API se muestran en pantalla (no solo en consola)
-- [ ] El codigo de llamadas a la API esta separado de los componentes
-- [ ] Los commits siguen las convenciones de `docs/reglas-git.md`
+1. Registro de usuario
+2. Login
+3. Guardado del token en `localStorage`
+4. Listado de tareas del usuario autenticado
+5. Crear tarea
+6. Actualizar estado de tarea
+7. Eliminar tarea
+8. Cerrar sesion
 
----
+## Notas
 
-## Como entregar
-
-1. Crea una rama `feature/tu-nombre/proyecto-02-frontend`
-2. Trabaja dentro de esta carpeta (`proyectos/proyecto-02-frontend/`)
-3. Al terminar, abre un Pull Request con el template correspondiente
+- Las llamadas HTTP estan encapsuladas en `src/services/api.js`
+- Si el token es invalido o expira, la UI vuelve al login
+- Si la API no esta disponible, se muestra el error en pantalla
+- Esta entrega usa HTML, CSS y JavaScript vanilla para cumplir el foco de semana 6
