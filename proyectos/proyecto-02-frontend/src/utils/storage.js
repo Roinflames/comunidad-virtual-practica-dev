@@ -1,10 +1,17 @@
-function saveSession(authData) {
-  localStorage.setItem("cv_token", authData.token);
-  localStorage.setItem("cv_user", JSON.stringify(authData.usuario));
+const TOKEN_KEY = "cv_token";
+const USER_KEY = "cv_user";
+
+export function saveSession(authData) {
+  localStorage.setItem(TOKEN_KEY, authData.token);
+  localStorage.setItem(USER_KEY, JSON.stringify(authData.usuario));
 }
 
-function readUser() {
-  const rawUser = localStorage.getItem("cv_user");
+export function readToken() {
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+export function readUser() {
+  const rawUser = localStorage.getItem(USER_KEY);
 
   if (!rawUser) {
     return null;
@@ -18,13 +25,7 @@ function readUser() {
   }
 }
 
-function clearSession() {
-  localStorage.removeItem("cv_token");
-  localStorage.removeItem("cv_user");
+export function clearSession() {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_KEY);
 }
-
-function hasToken() {
-  return Boolean(localStorage.getItem("cv_token"));
-}
-
-export { clearSession, hasToken, readUser, saveSession };

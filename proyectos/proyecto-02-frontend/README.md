@@ -1,44 +1,48 @@
 # Proyecto 02 - Frontend
 
-Base de frontend para la semana 6: una interfaz web simple que consume la API del proyecto 01 con login, registro y dashboard de tareas.
+Frontend completo del proyecto 02 para la semana 7. Esta version usa React + Vite y consume la API del proyecto 01 con autenticacion JWT y gestion de tareas por usuario.
 
-## Alcance de semana 6
+## Objetivo
 
-- Pantalla de login y registro
-- Dashboard con listado de tareas
-- Crear tarea desde la UI
-- Marcar tarea como completada o pendiente
-- Eliminar tarea
-- Guardar JWT en `localStorage`
-- Mostrar estados de carga y error en pantalla
+Construir la interfaz web del sistema de tareas para que un usuario pueda:
 
-La idea es dejar la base funcional para que en semana 7 se profundice el proyecto de frontend completo.
+- registrarse
+- iniciar sesion
+- ver sus tareas
+- crear nuevas tareas
+- marcar tareas como completadas o pendientes
+- eliminar tareas
+- cerrar sesion
+
+## Stack
+
+- React
+- Vite
+- CSS vanilla
 
 ## Requisitos
 
-- Tener disponible la API del proyecto 01
-- Node.js 18+ para levantar este frontend estatico
+- Node.js 18+
+- API `proyecto-01-api` corriendo localmente
 
 ## Configuracion
 
 1. Copia `.env.example` como `.env`
-2. Ajusta `API_BASE_URL` si tu API corre en otra URL
-
-Variables:
+2. Ajusta la URL base de la API si hace falta
 
 ```env
-PORT=4173
-API_BASE_URL=http://localhost:3000
+VITE_API_BASE_URL=http://localhost:3000
 ```
 
 ## Ejecutar
 
 ```bash
 cd proyectos/proyecto-02-frontend
-npm start
+npm install
+npm run dev
 ```
 
-Frontend por defecto:
+App por defecto:
 
 ```text
 http://localhost:4173
@@ -48,34 +52,52 @@ http://localhost:4173
 
 ```text
 proyecto-02-frontend/
+|-- public/
 |-- src/
 |   |-- components/
+|   |   |-- FeedbackBanner.jsx
+|   |   |-- TaskComposer.jsx
+|   |   `-- TaskItem.jsx
+|   |-- hooks/
+|   |   |-- useAuth.js
+|   |   `-- useTasks.js
+|   |-- pages/
+|   |   |-- AuthPage.jsx
+|   |   `-- DashboardPage.jsx
 |   |-- services/
+|   |   `-- api.js
 |   |-- utils/
-|   |-- main.js
+|   |   `-- storage.js
+|   |-- App.jsx
+|   |-- main.jsx
 |   `-- styles.css
 |-- .env.example
 |-- .gitignore
 |-- index.html
 |-- package.json
-|-- server.js
+|-- vite.config.js
 `-- README.md
 ```
 
-## Flujo cubierto
+## Requisitos tecnicos cubiertos
 
-1. Registro de usuario
+- Token JWT guardado en `localStorage`
+- Redireccion al login cuando la API responde `401`
+- Llamadas HTTP separadas en `src/services/api.js`
+- Manejo de estados de carga y error en la UI
+- Variables de entorno para la URL base de la API
+- Mensaje de error claro si la API no esta disponible
+
+## Flujo esperado para review
+
+1. Registro
 2. Login
-3. Guardado del token en `localStorage`
-4. Listado de tareas del usuario autenticado
-5. Crear tarea
-6. Actualizar estado de tarea
-7. Eliminar tarea
-8. Cerrar sesion
+3. Crear tarea
+4. Marcar tarea como completada
+5. Eliminar tarea
+6. Logout
 
 ## Notas
 
-- Las llamadas HTTP estan encapsuladas en `src/services/api.js`
-- Si el token es invalido o expira, la UI vuelve al login
-- Si la API no esta disponible, se muestra el error en pantalla
-- Esta entrega usa HTML, CSS y JavaScript vanilla para cumplir el foco de semana 6
+- Esta entrega reemplaza la base de semana 6 por una estructura alineada a la arquitectura pedida para semana 7.
+- El siguiente paso fuera de este cambio es abrir el Pull Request con capturas de la UI y review del encargado.

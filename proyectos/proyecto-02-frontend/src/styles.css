@@ -35,10 +35,6 @@ textarea {
   font: inherit;
 }
 
-.hidden {
-  display: none !important;
-}
-
 .page-shell {
   min-height: 100vh;
   display: grid;
@@ -128,6 +124,14 @@ textarea {
   border: 1px solid var(--border);
   background: var(--panel-strong);
   box-shadow: 0 10px 30px rgba(36, 32, 24, 0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.feedback-banner p {
+  margin: 6px 0 0;
 }
 
 .feedback-banner.success {
@@ -223,6 +227,10 @@ textarea {
 .ghost-button {
   padding: 14px 18px;
   border-radius: 999px;
+}
+
+.compact-button {
+  padding: 10px 14px;
 }
 
 .primary-button {
@@ -331,6 +339,15 @@ textarea {
   color: var(--danger);
 }
 
+.form-error {
+  margin: 0 0 14px;
+  color: var(--danger);
+  background: rgba(157, 47, 52, 0.08);
+  border: 1px solid rgba(157, 47, 52, 0.16);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
 .tab-button:hover,
 .primary-button:hover,
 .ghost-button:hover,
@@ -366,7 +383,8 @@ textarea {
   }
 
   .task-list-header,
-  .dashboard-header {
+  .dashboard-header,
+  .feedback-banner {
     flex-direction: column;
     align-items: stretch;
   }

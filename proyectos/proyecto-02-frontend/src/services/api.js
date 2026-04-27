@@ -1,11 +1,13 @@
-const API_BASE_URL = window.APP_CONFIG?.apiBaseUrl || "http://localhost:3000";
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
-async function request(pathname, options = {}) {
-  const token = localStorage.getItem("cv_token");
+async function request(pathname, options = {}, token) {
   const headers = {
-    "Content-Type": "application/json",
     ...(options.headers || {})
   };
+
+  if (options.body) {
+    headers["Content-Type"] = "application/json";
+  }
 
   if (token) {
     headers.Authorization = `Bearer ${token}`;
@@ -26,11 +28,11 @@ async function request(pathname, options = {}) {
     throw networkError;
   }
 
-  let payload = null;
-
   if (response.status === 204) {
     return null;
   }
+
+  let payload = null;
 
   try {
     payload = await response.json();
@@ -47,50 +49,26 @@ async function request(pathname, options = {}) {
   return payload?.data;
 }
 
-function registerUser(body) {
-  return request("/auth/registro", {
-    method: "POST",
-    body: JSON.stringify(body)
-  });
+export function registerUser(body) {
+  return request("/auth/registro", { method: "POST", body: JSON.stringify(body) });
 }
 
-function loginUser(body) {
-  return request("/auth/login", {
-    method: "POST",
-    body: JSON.stringify(body)
-  });
+export function loginUser(body) {
+  return request("/auth/login", { method: "POST", body: JSON.stringify(body) });
 }
 
-function getTasks() {
-  return request("/tareas");
+export function getTasks(token) {
+  return request("/tareas", {}, token);
 }
 
-function createTask(body) {
-  return request("/tareas", {
-    method: "POST",
-    body: JSON.stringify(body)
-  });
+export function createTask(body, token) {
+  return request("/tareas", { method: "POST", body: JSON.stringify(body) }, token);
 }
 
-function updateTask(taskId, body) {
-  return request(`/tareas/${taskId}`, {
-    method: "PUT",
-    body: JSON.stringify(body)
-  });
+export function updateTask(taskId, body, token) {
+  return request(`/tareas/${taskId}`, { method: "PUT", body: JSON.stringify(body) }, token);
 }
 
-function deleteTask(taskId) {
-  return request(`/tareas/${taskId}`, {
-    method: "DELETE"
-  });
+export function deleteTask(taskId, token) {
+  return request(`/tareas/${taskId}`, { method: "DELETE" }, token);
 }
-
-export {
-  API_BASE_URL,
-  createTask,
-  deleteTask,
-  getTasks,
-  loginUser,
-  registerUser,
-  updateTask
-};

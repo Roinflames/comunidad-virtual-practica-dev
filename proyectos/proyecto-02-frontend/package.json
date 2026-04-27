@@ -2,8 +2,19 @@
   "name": "proyecto-02-frontend",
   "version": "1.0.0",
   "private": true,
-  "description": "Frontend basico para consumir la API del proyecto 01 en la semana 6.",
+  "description": "Proyecto frontend completo para la semana 7, construido con React y Vite.",
+  "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^5.0.0"
   }
 }
