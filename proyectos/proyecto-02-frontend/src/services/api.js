@@ -26,9 +26,58 @@ export async function loginUser(credentials) {
   return parseResponse(response)
 }
 
+export async function registerUser(payload) {
+  const response = await fetch(`${API_BASE_URL}/auth/registro`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+
+  return parseResponse(response)
+}
+
 // Obtiene las tareas del usuario autenticado usando Bearer token.
 export async function getTasks(token) {
   const response = await fetch(`${API_BASE_URL}/tareas`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  return parseResponse(response)
+}
+
+export async function createTask(token, task) {
+  const response = await fetch(`${API_BASE_URL}/tareas`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(task),
+  })
+
+  return parseResponse(response)
+}
+
+export async function updateTask(token, taskId, task) {
+  const response = await fetch(`${API_BASE_URL}/tareas/${taskId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(task),
+  })
+
+  return parseResponse(response)
+}
+
+export async function deleteTask(token, taskId) {
+  const response = await fetch(`${API_BASE_URL}/tareas/${taskId}`, {
+    method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
     },
