@@ -9,10 +9,11 @@ const taskRoutes = require("./routes/taskRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 
 const app = express();
+const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:5173";
 
 // Permite que el frontend local en Vite consuma la API desde el navegador.
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Origin", corsOrigin);
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
