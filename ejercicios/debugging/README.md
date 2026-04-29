@@ -108,3 +108,14 @@ app.get('/productos', async (req, res) => {
 ## Entrega
 
 Crea una rama `fix/tu-nombre/ejercicio-debugging`, sube tus soluciones y abre un PR explicando cada bug encontrado.
+
+---
+
+## Archivos de referencia en este repo
+
+Este repositorio incluye una posible resolucion del ejercicio en:
+
+- `ejercicio-1-promedio.js`
+- `ejercicio-2-async.js`
+- `ejercicio-3-logs.js`
+- `SOLUCIONES.md`
