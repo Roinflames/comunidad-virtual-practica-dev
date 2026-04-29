@@ -64,6 +64,43 @@ id, titulo, descripcion, completada (bool), usuario_id, created_at, updated_at
 
 ---
 
+## Configuracion Local
+
+1. Copia `.env.example` a `.env`
+2. Ajusta las variables segun tu entorno local
+3. Inicia la API con:
+
+```bash
+npm install
+npm run start
+```
+
+Variables importantes del `.env`:
+
+- `PORT`: puerto donde corre la API
+- `PGUSER`, `PGPASSWORD`, `PGDATABASE`, `PGHOST`, `PGPORT`: conexion a PostgreSQL
+- `JWT_SECRET`: clave usada para firmar y validar tokens JWT
+- `CORS_ORIGIN`: origen del frontend autorizado por el navegador para consumir la API
+
+### Que significa `CORS_ORIGIN`
+
+`CORS` significa `Cross-Origin Resource Sharing`. Es la regla del navegador que permite o bloquea que un frontend en una URL consuma un backend en otra URL.
+
+Ejemplo local de este proyecto:
+
+- frontend: `http://localhost:5173`
+- backend: `http://localhost:3000`
+
+Como son origenes distintos, la API debe autorizar al frontend. Por eso existe:
+
+```env
+CORS_ORIGIN=http://localhost:5173
+```
+
+Si el frontend cambia de puerto o dominio, solo debes actualizar `CORS_ORIGIN` en el `.env`, sin modificar el codigo fuente.
+
+---
+
 ## Como entregar
 
 1. Crea una rama `feature/tu-nombre/proyecto-01-api`

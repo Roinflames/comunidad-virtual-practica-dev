@@ -64,6 +64,64 @@ No hay requisitos de diseño especifico, pero se esperan:
 
 ---
 
+## Implementado
+
+- Registro de usuario conectado a la API
+- Inicio de sesion con JWT
+- Persistencia de sesion con `localStorage`
+- Creacion de tareas
+- Edicion inline de titulo y descripcion
+- Cambio de estado pendiente/completada
+- Eliminacion de tareas
+- Cierre de sesion
+- Dashboard visual con resumen de tareas
+- Llamadas HTTP centralizadas en `src/services/api.js`
+
+---
+
+## Configuracion Local
+
+1. Copia `.env.example` a `.env`
+2. Verifica que la API del proyecto 01 este corriendo
+3. Instala dependencias y levanta el frontend:
+
+```bash
+npm install
+npm run dev
+```
+
+Variable importante:
+
+- `VITE_API_BASE_URL`: URL base de la API del proyecto 01
+
+Ejemplo:
+
+```env
+VITE_API_BASE_URL=http://localhost:3000
+```
+
+---
+
+## Flujo Probado
+
+Flujo validado manualmente:
+
+- Registro
+- Login
+- Recarga con sesion persistida
+- Crear tarea
+- Editar tarea
+- Completar tarea
+- Volver a pendiente
+- Eliminar tarea
+- Logout
+
+Evidencia escrita:
+
+- `proyectos/proyecto-02-frontend/evidencias/flujo-manual-semana-7.md`
+
+---
+
 ## Como entregar
 
 1. Crea una rama `feature/tu-nombre/proyecto-02-frontend`
