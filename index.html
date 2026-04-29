@@ -667,13 +667,15 @@
         ],
         objetivoActual: "Semana 6: implementar un frontend basico (HTML/CSS/JS vanilla) que consuma la API REST del proyecto 01.",
         entregaActual: "PR #9 aprobado: Auth JWT completo (registro/login), CRUD de tareas protegido por usuario, arquitectura MVC (controller/service/model), validaciones en todos los handlers, parametrized queries, evidencias Postman. Observacion menor: evidencia 03 faltante en carpeta.",
+        enEvaluacion: true,
+        estadoEvaluacion: "En evaluacion",
+        notaDisplay: "Pendiente",
         criterios: {
-          calidad_codigo: 85,  // 0-100 — arquitectura MVC solida, try/catch en todos los handlers, queries parametrizadas
-          uso_git:        85,
-          funcionalidad:  90,  // Auth+CRUD completo con JWT, aislamiento por usuario, todo evidenciado
-          code_reviews:   70,  // resolvio las observaciones del PR anterior (try/catch, validacion de id)
-          plazos:         80,
-          trabajo_equipo: 80
+          calidad_codigo:      85,
+          uso_git:             85,
+          funcionalidad:       90,
+          participacion_review: 70,
+          plazos_comunicacion: 80
         }
       },
       {
@@ -694,35 +696,35 @@
           { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
         ],
         objetivoActual: "Semana 3: implementar la API REST completa del proyecto 01 (CRUD /tareas) con los endpoints documentados en SEMANA-3-POSTMAN.md.",
-        entregaActual: "PR #7 aprobado: guia de endpoints, coleccion Postman base y README actualizado. Siguiente paso: implementar los endpoints documentados y agregar evidencias de prueba.",
+        entregaActual: "PRs abiertos: #11 (proyecto 01 API) y #12 (frontend base semana 6). Se solicita revision de consistencia tecnica y criterios de calidad.",
+        enEvaluacion: true,
+        estadoEvaluacion: "En evaluacion",
+        notaDisplay: "Pendiente",
         criterios: {
-          calidad_codigo: 60,
-          uso_git:        65,
-          funcionalidad:  50,  // solo documentacion, sin implementacion de la API aun
-          code_reviews:   30,
-          plazos:         45,  // semana 3 lleva mas de 3 semanas en curso (abierto 2026-03-27)
-          trabajo_equipo: 75
+          calidad_codigo:      68,
+          uso_git:             72,
+          funcionalidad:       74,
+          participacion_review: 45,
+          plazos_comunicacion: 62
         }
       }
     ];
 
     // Pesos de criterios (deben sumar 1.0)
     var PESOS = {
-      calidad_codigo: 0.20,
-      uso_git:        0.15,
-      funcionalidad:  0.25,
-      code_reviews:   0.15,
-      plazos:         0.10,
-      trabajo_equipo: 0.15
+      calidad_codigo:       0.25,
+      uso_git:              0.20,
+      funcionalidad:        0.30,
+      participacion_review: 0.15,
+      plazos_comunicacion:  0.10
     };
 
     var LABELS = {
-      calidad_codigo: "Calidad de codigo",
-      uso_git:        "Uso de Git",
-      funcionalidad:  "Funcionalidad",
-      code_reviews:   "Code reviews",
-      plazos:         "Plazos",
-      trabajo_equipo: "Trabajo en equipo"
+      calidad_codigo:       "Calidad de codigo",
+      uso_git:              "Uso de Git",
+      funcionalidad:        "Funcionalidad",
+      participacion_review: "Participacion en reviews",
+      plazos_comunicacion:  "Plazos y comunicacion"
     };
 
     function calcularNota(criterios) {
@@ -792,7 +794,7 @@
         '<p class="sc-section-title">Criterios de evaluacion</p>' +
         criteriosHtml +
         '<div class="sc-tarea">' +
-          '<p class="sc-tarea-title">Objetivo semana ' + est.semanaActual + '</p>' +
+          '<p class="sc-tarea-title">Objetivo actual</p>' +
           '<p>' + (est.objetivoActual || "Definir objetivo actual") + '</p>' +
           '<p><strong>Entrega:</strong> ' + (est.entregaActual || "Pendiente de definir") + '</p>' +
         '</div>' +
