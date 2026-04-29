@@ -678,30 +678,33 @@
       },
       {
         nombre: "Javier",
-        semanaActual: 3,
+        semanaActual: 7,
+        enEvaluacion: true,
+        estadoEvaluacion: "Pendiente de review",
+        notaDisplay: "—",
         semanas: [
           { num: 1,  titulo: "Onboarding y Git",           estado: "completada" },
           { num: 2,  titulo: "Backend Basico",              estado: "completada" },
-          { num: 3,  titulo: "APIs REST",                   estado: "en-curso"  },
-          { num: 4,  titulo: "Base de Datos",               estado: "pendiente" },
-          { num: 5,  titulo: "Proyecto 01: API REST",       estado: "pendiente" },
-          { num: 6,  titulo: "Frontend Basico",             estado: "pendiente" },
-          { num: 7,  titulo: "Proyecto 02: Frontend",       estado: "pendiente" },
+          { num: 3,  titulo: "APIs REST",                   estado: "completada" },
+          { num: 4,  titulo: "Base de Datos",               estado: "completada" },
+          { num: 5,  titulo: "Proyecto 01: API REST",       estado: "completada" },
+          { num: 6,  titulo: "Frontend Basico",             estado: "completada" },
+          { num: 7,  titulo: "Proyecto 02: Frontend",       estado: "en-curso"  },
           { num: 8,  titulo: "Debugging y Calidad",         estado: "pendiente" },
           { num: 9,  titulo: "Refactoring",                 estado: "pendiente" },
           { num: 10, titulo: "DevOps Basico",               estado: "pendiente" },
           { num: 11, titulo: "Proyecto 03: Automatizacion", estado: "pendiente" },
           { num: 12, titulo: "Cierre y Demo",               estado: "pendiente" }
         ],
-        objetivoActual: "Semana 3: implementar la API REST completa del proyecto 01 (CRUD /tareas) con los endpoints documentados en SEMANA-3-POSTMAN.md.",
-        entregaActual: "PR #7 aprobado: guia de endpoints, coleccion Postman base y README actualizado. Siguiente paso: implementar los endpoints documentados y agregar evidencias de prueba.",
+        objetivoActual: "Semana 7: cerrar el proyecto 02 en React, con estructura por pages/components/hooks/services, manejo de errores en UI y flujo completo sobre la API del proyecto 01.",
+        entregaActual: "Rama feature/JavierDaza/proyecto-02-frontend migrada a React + Vite, con login, registro, dashboard, hooks de auth/tareas y base lista para PR con capturas.",
         criterios: {
-          calidad_codigo: 60,
-          uso_git:        65,
-          funcionalidad:  50,  // solo documentacion, sin implementacion de la API aun
-          code_reviews:   30,
-          plazos:         45,  // semana 3 lleva mas de 3 semanas en curso (abierto 2026-03-27)
-          trabajo_equipo: 75
+          calidad_codigo: 86,
+          uso_git:        78,
+          funcionalidad:  88,
+          code_reviews:   50,
+          plazos:         62,
+          trabajo_equipo: 80
         }
       }
     ];

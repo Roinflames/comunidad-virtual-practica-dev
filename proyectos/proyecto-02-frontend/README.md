@@ -1,71 +1,103 @@
-# Proyecto 02 — Frontend
+# Proyecto 02 - Frontend
 
-**Objetivo:** Construir una interfaz web que consuma la API del Proyecto 01, con login, listado y gestion de tareas.
+Frontend completo del proyecto 02 para la semana 7. Esta version usa React + Vite y consume la API del proyecto 01 con autenticacion JWT y gestion de tareas por usuario.
 
-**Nivel:** Basico-Intermedio
-**Semana del programa:** 7
-**Stack sugerido:** React (Vite) o Ionic + React
-**Prerrequisito:** tener el Proyecto 01 funcionando localmente
+## Objetivo
 
----
+Construir la interfaz web del sistema de tareas para que un usuario pueda:
 
-## Descripcion
+- registrarse
+- iniciar sesion
+- ver sus tareas
+- crear nuevas tareas
+- marcar tareas como completadas o pendientes
+- eliminar tareas
+- cerrar sesion
 
-Desarrollaras la capa visual para la API de tareas construida en el proyecto anterior. Los usuarios podran registrarse, iniciar sesion, y gestionar sus tareas desde el navegador.
+## Stack
 
----
+- React
+- Vite
+- CSS vanilla
 
-## Pantallas Requeridas
+## Requisitos
 
-### Pagina de Login / Registro
-- Formulario de login (email + password)
-- Link o tab para cambiar a registro
-- Validacion de campos antes de enviar
-- Manejo de errores (credenciales incorrectas, email ya existe)
-- Redireccion al Dashboard si el login es exitoso
+- Node.js 18+
+- API `proyecto-01-api` corriendo localmente
 
-### Dashboard (requiere sesion iniciada)
-- Listado de tareas del usuario autenticado
-- Formulario para agregar una nueva tarea (titulo + descripcion)
-- Boton para marcar tarea como completada / pendiente
-- Boton para eliminar tarea
-- Indicador visual de estado de cada tarea (completada / pendiente)
-- Boton de cerrar sesion
+## Configuracion
 
----
+1. Copia `.env.example` como `.env`
+2. Ajusta la URL base de la API si hace falta
 
-## Requisitos Tecnicos
+```env
+VITE_API_BASE_URL=http://localhost:3000
+```
 
-- [ ] El token JWT se guarda en `localStorage` y se envia en cada request
-- [ ] Si el token vence o es invalido, redirigir automaticamente al login
-- [ ] Las llamadas a la API estan encapsuladas en `/services/api.js` (no hacer fetch directo desde componentes)
-- [ ] Manejo de estados de carga (loading) y error en la UI
-- [ ] Variables de entorno para la URL base de la API (`.env.example`)
-- [ ] La app no se rompe si la API no esta disponible: mostrar mensaje de error
+## Ejecutar
 
----
+```bash
+cd proyectos/proyecto-02-frontend
+npm install
+npm run dev
+```
 
-## Diseño
+App por defecto:
 
-No hay requisitos de diseño especifico, pero se esperan:
-- Estructura visual ordenada y limpia
-- Diferenciacion visual entre tareas completadas y pendientes
-- Formularios con feedback claro (errores, exito)
-- Responsive basico (que funcione en pantallas de 768px+)
+```text
+http://localhost:4173
+```
 
----
+## Estructura
 
-## Criterios de Evaluacion
+```text
+proyecto-02-frontend/
+|-- public/
+|-- src/
+|   |-- components/
+|   |   |-- FeedbackBanner.jsx
+|   |   |-- TaskComposer.jsx
+|   |   `-- TaskItem.jsx
+|   |-- hooks/
+|   |   |-- useAuth.js
+|   |   `-- useTasks.js
+|   |-- pages/
+|   |   |-- AuthPage.jsx
+|   |   `-- DashboardPage.jsx
+|   |-- services/
+|   |   `-- api.js
+|   |-- utils/
+|   |   `-- storage.js
+|   |-- App.jsx
+|   |-- main.jsx
+|   `-- styles.css
+|-- .env.example
+|-- .gitignore
+|-- index.html
+|-- package.json
+|-- vite.config.js
+`-- README.md
+```
 
-- [ ] El flujo completo funciona: registro → login → crear tarea → completar → eliminar → logout
-- [ ] Los errores de la API se muestran en pantalla (no solo en consola)
-- [ ] El codigo de llamadas a la API esta separado de los componentes
-- [ ] Los commits siguen las convenciones de `docs/reglas-git.md`
+## Requisitos tecnicos cubiertos
 
----
+- Token JWT guardado en `localStorage`
+- Redireccion al login cuando la API responde `401`
+- Llamadas HTTP separadas en `src/services/api.js`
+- Manejo de estados de carga y error en la UI
+- Variables de entorno para la URL base de la API
+- Mensaje de error claro si la API no esta disponible
 
-## Como entregar
+## Flujo esperado para review
 
-1. Crea una rama `feature/tu-nombre/proyecto-02-frontend`
-2. Trabaja dentro de esta carpeta (`proyectos/proyecto-02-frontend/`)
-3. Al terminar, abre un Pull Request con el template correspondiente
+1. Registro
+2. Login
+3. Crear tarea
+4. Marcar tarea como completada
+5. Eliminar tarea
+6. Logout
+
+## Notas
+
+- Esta entrega reemplaza la base de semana 6 por una estructura alineada a la arquitectura pedida para semana 7.
+- El siguiente paso fuera de este cambio es abrir el Pull Request con capturas de la UI y review del encargado.
