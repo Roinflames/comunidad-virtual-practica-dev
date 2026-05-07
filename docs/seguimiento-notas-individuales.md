@@ -28,8 +28,8 @@ Nota: mientras exista una evaluacion general activa, las notas se mantienen en e
 
 | Alumno | Semana actual | PR activo | Calidad codigo (25%) | Uso Git (20%) | Funcionalidad (30%) | Code reviews (15%) | Plazos/comunicacion (10%) | Estado nota |
 |---|---:|---|---:|---:|---:|---:|---:|---|
-| Wellington | 8/12 | #18 | 85 | 85 | 90 | 70 | 80 | En evaluacion |
-| Javier | 9/12 | #17 | 68 | 72 | 74 | 45 | 62 | En evaluacion |
+| Wellington | 8/12 | #18 | 85 | 85 | 90 | 70 | 80 | **5.8 Aprobado** |
+| Javier | 9/12 | #17 | 68 | 72 | 74 | 45 | 62 | **4.5 Aprobado** |
 
 ## Criterios para cierre de evaluacion
 
