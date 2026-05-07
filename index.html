@@ -872,9 +872,15 @@
       if (grid) grid.innerHTML = ESTUDIANTES.map(renderEstudiante).join('');
     })();
 
+    var loaderStart = Date.now();
+    var LOADER_MIN_MS = 1800;
+
     window.addEventListener('load', function () {
-      var loader = document.getElementById('loader');
-      setTimeout(function () { loader.classList.add('hidden'); }, 400);
+      var elapsed = Date.now() - loaderStart;
+      var wait = Math.max(0, LOADER_MIN_MS - elapsed);
+      setTimeout(function () {
+        document.getElementById('loader').classList.add('hidden');
+      }, wait);
     });
   </script>
 </body>
