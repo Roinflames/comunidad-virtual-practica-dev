@@ -556,9 +556,67 @@
     @media (max-width: 640px) {
       .student-card { padding-left: 20px; padding-right: 20px; }
     }
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(231, 58, 140, 0.18), transparent 22%),
+        radial-gradient(circle at 82% 12%, rgba(85, 189, 197, 0.15), transparent 20%),
+        linear-gradient(180deg, #171d68, #090d33);
+      transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+
+    #loader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(127, 228, 240, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(127, 228, 240, 0.07) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(circle at center, black 55%, transparent 100%);
+      pointer-events: none;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-logo {
+      width: min(220px, 52vw);
+      animation: loaderFadeIn 0.7s ease forwards;
+    }
+
+    .loader-name {
+      font-family: "Aileron", Arial, sans-serif;
+      font-weight: 400;
+      font-size: 0.85rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(199, 202, 239, 0.7);
+      animation: loaderFadeIn 0.9s ease 0.15s both;
+    }
+
+    @keyframes loaderFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
+  <div id="loader">
+    <img class="loader-logo" src="./assets-logo-comunidad-virtual.png" alt="Comunidad Virtual">
+    <span class="loader-name">Comunidad Virtual</span>
+  </div>
+
   <div class="orb orb-one"></div>
   <div class="orb orb-two"></div>
 
@@ -813,6 +871,11 @@
       var grid = document.getElementById('students-grid');
       if (grid) grid.innerHTML = ESTUDIANTES.map(renderEstudiante).join('');
     })();
+
+    window.addEventListener('load', function () {
+      var loader = document.getElementById('loader');
+      setTimeout(function () { loader.classList.add('hidden'); }, 400);
+    });
   </script>
 </body>
 </html>
