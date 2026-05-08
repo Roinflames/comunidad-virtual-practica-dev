@@ -4,6 +4,8 @@
 *.local
 *.secret
 node_modules/
+.planning/
+get-shit-done/
 __pycache__/
 *.pyc
 *.pyo

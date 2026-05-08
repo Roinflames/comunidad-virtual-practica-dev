@@ -4,7 +4,7 @@
 
 **Nivel:** Basico-Intermedio
 **Semana del programa:** 5
-**Stack sugerido:** Node.js + Express + SQLite (o Python + FastAPI + SQLite)
+**Stack:** Node.js + Express + PostgreSQL
 
 ---
 
@@ -54,6 +54,73 @@ id, titulo, descripcion, completada (bool), usuario_id, created_at, updated_at
 
 ---
 
+## Instalacion y uso
+
+### 1) Variables de entorno
+Crear `.env` (o copiar desde `.env.example`) con tus credenciales:
+```
+PORT=3000
+PGUSER=tu_usuario
+PGPASSWORD=tu_password
+PGDATABASE=practica_backend
+PGHOST=localhost
+PGPORT=5432
+JWT_SECRET=tu_clave_super_secreta
+```
+
+### 2) Instalar dependencias
+```
+npm install
+```
+
+### 3) Ejecutar migracion (crear tablas)
+```
+psql -h <PGHOST> -U <PGUSER> -d <PGDATABASE> -f src/db/schema.sql
+```
+
+### 4) Levantar servidor
+```
+npm run dev
+```
+
+### 5) Probar (Postman o curl)
+
+**Registro**
+```
+POST http://localhost:3000/auth/registro
+{
+  "nombre": "Wellington",
+  "email": "wr@gmail.com",
+  "password": "123456"
+}
+```
+
+**Login**
+```
+POST http://localhost:3000/auth/login
+{
+  "email": "wr@gmail.com",
+  "password": "123456"
+}
+```
+
+**Usar token en tareas**
+Header:
+```
+Authorization: Bearer <TOKEN>
+```
+
+Ejemplo:
+```
+POST http://localhost:3000/tareas
+{
+  "titulo": "Estudiar",
+  "descripcion": "JWT y CRUD"
+}
+```
+
+---
+
 ## Criterios de Evaluacion
 
 - [ ] Todos los endpoints funcionan correctamente (probados en Postman)
@@ -61,6 +128,19 @@ id, titulo, descripcion, completada (bool), usuario_id, created_at, updated_at
 - [ ] El codigo sigue la estructura de capas definida en `docs/arquitectura.md`
 - [ ] Los commits siguen las convenciones de `docs/reglas-git.md`
 - [ ] El README del proyecto explica como instalarlo y probarlo
+
+---
+
+## Evidencias (Postman)
+
+- `evidencias/01-auth-registro-400.png`
+- `evidencias/02-auth-registro-201.png`
+- `evidencias/04-tareas-get-id-200.png`
+- `evidencias/05-auth-login-200.png`
+- `evidencias/06-tareas-post-201.png`
+- `evidencias/07-tareas-get-200-con-datos.png`
+- `evidencias/08-tareas-put-200.png`
+- `evidencias/09-tareas-delete-200.png`
 
 ---
 
